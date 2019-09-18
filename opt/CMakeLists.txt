@@ -10,3 +10,4 @@ endif()
 
 add_subdirectory(cpr)
 add_subdirectory(json)
+add_subdirectory(lua-5.3.0)

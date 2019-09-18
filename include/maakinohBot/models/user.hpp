@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef MODELS_USER_HPP
+#define MODELS_USER_HPP
+
 #include <maakinohBot/models/parseable_object.hpp>
 #include <nlohmann/json.hpp>
 
@@ -21,7 +24,7 @@ namespace MaakinohBot::Models
         void parse(std::string jsonString) override;
     };
 
-    void to_json(json &j, const User &p)
+    inline void to_json(json &j, const User &p)
     {
         j = json{{"id",            p.id},
                  {"is_bot",        p.is_bot},
@@ -32,10 +35,11 @@ namespace MaakinohBot::Models
     }
 
 
-    void from_json(const json& j, User& p) {
-        j.at("name").get_to(p.name);
-        j.at("address").get_to(p.address);
-        j.at("age").get_to(p.age);
+    inline void from_json(const json& j, User& p) {
+
+
     }
 
 }
+
+#endif

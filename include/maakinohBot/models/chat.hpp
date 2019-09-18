@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef MODELS_CHAT_HPP
+#define MODELS_CHAT_HPP
+
 #include <maakinohBot/models/parseable_object.hpp>
 #include <string>
 
@@ -26,3 +29,5 @@ namespace MaakinohBot::Models
     };
 
 }
+
+#endif

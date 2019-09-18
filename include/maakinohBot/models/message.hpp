@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef MODELS_MESSAGE_HPP
+#define MODELS_MESSAGE_HPP
+
 #include <maakinohBot/models/parseable_object.hpp>
 #include <maakinohBot/models/user.hpp>
 
@@ -16,3 +19,5 @@ namespace MaakinohBot::Models
         int date;
     };
 }
+
+#endif

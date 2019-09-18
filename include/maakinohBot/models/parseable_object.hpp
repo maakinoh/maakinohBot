@@ -1,7 +1,8 @@
 #pragma once
-
-
+#ifndef MODELS_PARSEABLE_OBJECT
+#define MODELS_PARSEABLE_OBJECT
 #include <string>
+
 
 namespace MaakinohBot::Models{
 
@@ -11,3 +12,5 @@ namespace MaakinohBot::Models{
     };
 
 }
+
+#endif

@@ -1,5 +1,6 @@
 #pragma once
-
+#ifndef APPLICATION_HPP
+#define APPLICATION_HPP
 namespace MaakinohBot::Application
 {
 
@@ -9,3 +10,5 @@ namespace MaakinohBot::Application
         void start_application();
     };
 }
+
+#endif
