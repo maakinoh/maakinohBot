@@ -10,8 +10,12 @@
 namespace MaakinohBot::Plugin{
 
     class PluginHandler{
+    private:
+        lua_State* lua_stack;
     public:
-        void handle_lua(std::string lua_script, Telegram::Bot& telebot);
+        PluginHandler();
+
+        void handle_lua(std::string lua_script, Telegram::Bot& telebot, std::string message);
 
 
     };
