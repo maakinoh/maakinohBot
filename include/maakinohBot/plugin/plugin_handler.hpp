@@ -16,6 +16,7 @@ namespace MaakinohBot::Plugin
     {
     private:
         lua_State *lua_stack;
+        void lua_set_global_telegram_functions();
 
         static int lua_message_reply(lua_State *lua_stack);
 
