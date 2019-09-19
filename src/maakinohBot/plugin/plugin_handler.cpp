@@ -34,10 +34,26 @@ void PluginHandler::handle_lua(std::string lua_script, MaakinohBot::Telegram::Bo
         return;
     }
 
-    lua_pushcfunction(this->lua_stack, this->lua_find_user_by_id);
+    lua_newtable(this->lua_stack); /* create Telegram Table  ==> stack: ..., {} */
+    int telegramTableFind = lua_gettop(this->lua_stack);
+
+    lua_newtable(this->lua_stack); /*stack: ..., {}, {}*/
+
+    lua_pushcfunction(this->lua_stack, this->lua_find_user_by_id); /* stack: ..., {}, {}, cfnc:lua_find_user_by_id */
+    lua_setfield(this->lua_stack, -1, "UserById"); /* stack : ... , {}, {UserById : cfnc:lua_find_user_by_id} */
+
+    lua_pushcfunction(this->lua_stack, this->lua_finc_chat_by_id); /*stack: ..., {}, {UserById : cfnc:lua_find_user_by_id}, cfnc:lua_finc_chat_by_id */
+    lua_setfield(this->lua_stack, -1, "ChatById"); /*stack: ... {}, {UserById : cfnc:lua_find_user_by_id, ChatById: cfnc:lua_finc_chat_by_id}*/
+
+    lua_pushvalue(this->lua_stack, telegramTableFind);
+    lua_setglobal(this->lua_stack, "Telegram");
+
+
+
+
     lua_setglobal(this->lua_stack, "FindUserById");
 
-    lua_pushcfunction(this->lua_stack, this->lua_finc_chat_by_id);
+
     lua_setglobal(this->lua_stack, "FindChatById");
 
     lua_pushcfunction(this->lua_stack, this->lua_send_message_to_chat_by_id);
@@ -52,7 +68,8 @@ void PluginHandler::handle_lua(std::string lua_script, MaakinohBot::Telegram::Bo
     {
         /* Create the parameter for the lua function as a table*/
         lua_newtable(this->lua_stack);
-        int a = lua_gettop(this->lua_stack);
+        int messageTable = lua_gettop(this->lua_stack);
+        lua_pushvalue(this->lua_stack, messageTable);
 
         /*Push a method to the function which reply to the sender of the msg*/
         lua_pushcfunction(this->lua_stack, this->lua_message_reply);
