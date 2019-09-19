@@ -5,6 +5,7 @@
 
 #include <maakinohBot/models/parseable_object.hpp>
 #include <maakinohBot/models/user.hpp>
+#include <string>
 
 
 namespace MaakinohBot::Models
@@ -17,6 +18,7 @@ namespace MaakinohBot::Models
         int message_id;
         User from;
         int date;
+        std::string text;
     };
 }
 

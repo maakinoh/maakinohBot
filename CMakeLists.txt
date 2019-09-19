@@ -4,6 +4,7 @@ project(cpr-example)
 if(NOT ${CMAKE_VERSION} LESS 3.2)
     set(CMAKE_CXX_STANDARD 17)
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_EXTENSIONS ON)
 else()
     message(STATUS "Checking compiler flags for C++11 support.")
     # Set C++11 support flags for various compilers
