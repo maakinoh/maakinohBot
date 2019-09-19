@@ -5,6 +5,7 @@
 
 #include <maakinohBot/models/parseable_object.hpp>
 #include <maakinohBot/models/user.hpp>
+#include <maakinohBot/models/chat.hpp>
 #include <string>
 
 
@@ -17,6 +18,7 @@ namespace MaakinohBot::Models
     public:
         int message_id;
         User from;
+        Chat chat;
         int date;
         std::string text;
     };

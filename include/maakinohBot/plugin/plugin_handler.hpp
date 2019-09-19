@@ -9,17 +9,26 @@
 
 #include <string>
 
-namespace MaakinohBot::Plugin{
+namespace MaakinohBot::Plugin
+{
 
-    class PluginHandler{
+    class PluginHandler
+    {
     private:
-        lua_State* lua_stack;
+        lua_State *lua_stack;
 
-        static int lua_message_reply(lua_State* lua_stack);
+        static int lua_message_reply(lua_State *lua_stack);
+
+        static int lua_find_user_by_id(lua_State *lua_stack);
+
+        static int lua_finc_chat_by_id(lua_State *lua_stack);
+
+        static int lua_send_message_to_chat_by_id(lua_State *lua_stack);
+
     public:
         PluginHandler();
 
-        void handle_lua(std::string lua_script, Telegram::Bot& telebot, Models::Message message);
+        void handle_lua(std::string lua_script, Telegram::Bot &telebot, Models::Message &message);
 
 
     };
