@@ -6,7 +6,7 @@
 namespace MaakinohBot::Telegram
 {
 
-    class Bot : Models::User
+    class Bot : public Models::User
     {
 
     public:
