@@ -20,19 +20,23 @@ int PluginHandler::lua_message_reply(lua_State *L)
 
 int PluginHandler::lua_get_bot_id_from_lua(lua_State *L)
 {
-    lua_getglobal(L, "TelegramBot_Data");
+    lua_getglobal(L, LUA_BOT_DATA_TABLE);
     lua_getfield(L, -1, "ID");
     lua_tointeger(L, -1);
 
     return 0;
 }
 
-int PluginHandler::lua_find_user_by_id(lua_State *L)
+int PluginHandler::lua_find_chat_by_name(lua_State *L)
 {
-    lua_getglobal(L, "TelegramBot_Data");
+    std::string ChatId = lua_tostring(L, -1);
+
+    lua_getglobal(L, LUA_BOT_DATA_TABLE);
     lua_getfield(L, -1, "ID");
+
     int telegramBotId = lua_tointeger(L, -1);
-    lua_pop(L, -2);
+
+
     return 1;
 }
 
@@ -82,7 +86,7 @@ int PluginHandler::lua_send_message_to_chat_by_id(lua_State *L)
     {
         int chatId = lua_tointeger(L, -2);
         std::string text = lua_tostring(L, -1);
-        Telegram::Http::sendMessage(chatId, text);
+        Telegram::Http::sendMessage("", chatId, text);
         lua_pushinteger(L, 1);
         return 1;
     }
@@ -107,7 +111,7 @@ void PluginHandler::lua_set_global_telegram_functions()
 
     lua_newtable(this->lua_stack); /*stack: ..., {}, {}*/
 
-    lua_pushcfunction(this->lua_stack, this->lua_find_user_by_id); /* stack: ..., {}, {}, cfnc:lua_find_user_by_id */
+    lua_pushcfunction(this->lua_stack, this->lua_find_chat_by_name); /* stack: ..., {}, {}, cfnc:lua_find_user_by_id */
     lua_setfield(this->lua_stack, -1, "UserById"); /* stack : ... , {}, {UserById : cfnc:lua_find_user_by_id} */
 
     lua_pushcfunction(this->lua_stack,
@@ -137,6 +141,7 @@ void PluginHandler::handle_lua(std::string lua_script, MaakinohBot::Telegram::Bo
     }
 
     this->lua_set_global_telegram_functions();
+    lua_pushcfunction(this->lua_stack, this->lua_send_message_to_chat_by_id);
     lua_setglobal(this->lua_stack, "SendMessageToChatByID");
 
 

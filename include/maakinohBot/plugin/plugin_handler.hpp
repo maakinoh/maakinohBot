@@ -20,7 +20,7 @@ namespace MaakinohBot::Plugin
 
         static int lua_message_reply(lua_State *L);
 
-        static int lua_find_user_by_id(lua_State *L);
+        static int lua_find_chat_by_name(lua_State *L);
 
         static int lua_finc_chat_by_id(lua_State *L);
 
