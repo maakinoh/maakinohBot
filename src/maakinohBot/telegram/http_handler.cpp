@@ -1,4 +1,5 @@
 #include <maakinohBot/telegram/http_handler.hpp>
+#include <maakinohBot/models/chat.hpp>
 #include <cpr/cpr.h>
 
 void MaakinohBot::Telegram::Http::sendMessage(std::string token, int chat_id, std::string text)

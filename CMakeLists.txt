@@ -31,12 +31,13 @@ else()
 endif()
 option(FOO_USE_EXTERNAL_JSON "Use an external JSON library" OFF)
 
+set (CMAKE_AUTOMOC ON)
 add_subdirectory(opt)
 include_directories(include)
 include_directories(opt/lua-5.3.0/src)
 add_executable(maakinohBot src/maakinohBot/application.cpp include/maakinohBot/application.hpp include/maakinohBot/models/parseable_object.hpp include/maakinohBot/telegram/bot.hpp include/maakinohBot/models/user.hpp src/maakinohBot/models/user.cpp include/maakinohBot/models/message.hpp include/maakinohBot/models/chat.hpp include/maakinohBot/plugin/plugin_handler.hpp src/maakinohBot/plugin/plugin_handler.cpp include/maakinohBot/telegram/http_handler.hpp src/maakinohBot/telegram/http_handler.cpp)
 
-target_link_libraries(maakinohBot ${CPR_LIBRARIES} liblua)
+target_link_libraries(maakinohBot ${CPR_LIBRARIES} liblua pthread)
 target_link_libraries(maakinohBot PRIVATE nlohmann_json::nlohmann_json)
 
 include_directories(${CPR_INCLUDE_DIRS} ${JSON_INCLUDE_DIRS})

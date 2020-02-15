@@ -13,7 +13,7 @@ namespace MaakinohBot::Telegram::Http{
 
     void sendMessage(std::string token, int chat_id, std::string text);
 
-     Models::Chat getChat(std::string token, std::string chatName);
+    Models::Chat getChat(std::string token, std::string chatName);
 
 
 }

@@ -6,7 +6,8 @@
 
 namespace MaakinohBot::Models{
 
-    class ParseableObject{
+    class ParseableObject
+    {
     public:
         virtual void parse(std::string jsonString){};
     };

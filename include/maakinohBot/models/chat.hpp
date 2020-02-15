@@ -16,19 +16,21 @@ using json = nlohmann::json;
 
 namespace MaakinohBot::Models
 {
-    class Chat : ParseableObject
+    class Chat
     {
     public:
         int id;
         int type;
-    private:
-        void parse(std::string jsonString) override;
 
+        Chat()
+        {
+
+        };
+
+        
     };
 
-
-
-    int type_string_to_int(std::string i){
+    inline int type_string_to_int(std::string i){
         if(i.compare("private") == 0){
             return CHAT_TYPE_PRIVATE;
         } else if(i.compare("group") == 0){
